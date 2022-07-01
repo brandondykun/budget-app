@@ -36,7 +36,10 @@ function App() {
               element={<HomePage transactions={transactions} />}
             />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/add-transaction" element={<AddTransactionPage />} />
+            <Route
+              path="/add-transaction"
+              element={<AddTransactionPage transactionsRef={transactionsRef} />}
+            />
           </Routes>
         </div>
         <NavBar />
