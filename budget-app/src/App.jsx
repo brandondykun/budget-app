@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import HomePage from "./Pages/HomePage";
 import AddTransactionPage from "./Pages/AddTransactionPage";
 import LoginPage from "./Pages/LoginPage";
+import NavBar from "./Components/NavBar";
 
 function App() {
   const [transactions, setTransactions] = useState(null);
@@ -28,11 +29,17 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route path="/" element={<HomePage transactions={transactions} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/add-transaction" element={<AddTransactionPage />} />
-        </Routes>
+        <div className="primary-content">
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage transactions={transactions} />}
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/add-transaction" element={<AddTransactionPage />} />
+          </Routes>
+        </div>
+        <NavBar />
       </Router>
     </div>
   );
