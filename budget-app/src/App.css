@@ -1,3 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(155, 87, 155);
+}
+
+.primary-content {
+  flex: 1;
+  background-color: rgb(252, 212, 219);
+  border-radius: 25px 25px 0 0;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.3) 0px -7px 10px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.primary-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(155, 87, 155);
+  padding: .5rem;
+  border-top: 1px solid purple;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: white;
+  font-weight: bold;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.transactions-list {
+  max-width: 70vw;
+  margin: auto;
+}
+.transaction-list-item {
+  padding: .3rem;
+  justify-content: space-between;
+}
+
+.transactions-list-title {
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
