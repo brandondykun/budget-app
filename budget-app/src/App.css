@@ -44,16 +44,83 @@
 }
 
 .transactions-list {
-  max-width: 70vw;
-  margin: auto;
+  width: 90vw;
+  /* margin: auto; */
 }
 .transaction-list-item {
-  padding: .3rem;
-  justify-content: space-between;
+  /* padding: .3rem; */
+  /* justify-content: space-between; */
 }
 
 .transactions-list-title {
-  justify-content: space-around;
+  /* justify-content: space-between; */
   font-weight: bold;
   font-size: 1.2rem;
+  /* padding: .3rem; */
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#transactions-table td, #transactions-table th {
+  border: 1px solid rgb(59, 59, 59);
+  padding: 8px;
+}
+
+#transactions-table tr:nth-child(odd){background-color: #8585858c;}
+
+#transactions-table tr:nth-child(even){background-color: #f2f2f277;}
+
+#transactions-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #41324c;
+  color: white;
+}
+
+#totals-table {
+  width: 90vw;
+  /* margin: auto; */
+}
+
+#totals-table td {
+  padding: 8px;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 75vh;
+}
+
+#add-transaction-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+#add-transaction-form > input {
+  margin-bottom: 1rem;
+  padding: .3rem;
+}
+
+.add-transaction-button {
+  margin-top: 1rem;
+  padding: .5rem;
+  font-size: 1.2rem;
+  background-color: #41324c;
+  border: 1px solid black;
+  color: white;
+}
+
+.page-title {
+  margin-bottom: 1rem;
 }
