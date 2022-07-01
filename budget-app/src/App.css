@@ -45,18 +45,11 @@
 
 .transactions-list {
   width: 90vw;
-  /* margin: auto; */
-}
-.transaction-list-item {
-  /* padding: .3rem; */
-  /* justify-content: space-between; */
 }
 
 .transactions-list-title {
-  /* justify-content: space-between; */
   font-weight: bold;
   font-size: 1.2rem;
-  /* padding: .3rem; */
 }
 
 table, th, td {
@@ -86,7 +79,6 @@ table {
 
 #totals-table {
   width: 90vw;
-  /* margin: auto; */
 }
 
 #totals-table td {
