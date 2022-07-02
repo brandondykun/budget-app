@@ -7,6 +7,8 @@ import {
   faRightFromBracket,
   faRightToBracket,
   faUserPlus,
+  faBell,
+  faB,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth } from "../firebase-config";
 import { AuthContext } from "../Auth";
@@ -34,6 +36,11 @@ const NavBar = () => {
       {currentUser && (
         <NavLink className="nav-link" to="/add-transaction">
           <FontAwesomeIcon icon={faCirclePlus} size="lg" />
+        </NavLink>
+      )}
+      {currentUser && (
+        <NavLink className="nav-link" to="/reminders">
+          <FontAwesomeIcon icon={faBell} size="lg" />
         </NavLink>
       )}
       {currentUser && (

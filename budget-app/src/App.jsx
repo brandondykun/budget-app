@@ -10,6 +10,7 @@ import NavBar from "./Components/NavBar";
 import SignUpPage from "./Pages/SignUpPage";
 import { AuthContext } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import RemindersPage from "./Pages/RemindersPage";
 
 function App() {
   const [transactions, setTransactions] = useState(null);
@@ -59,6 +60,9 @@ function App() {
                   <AddTransactionPage transactionsRef={transactionsRef} />
                 }
               />
+            </Route>
+            <Route exact path="/reminders" element={<PrivateRoute />}>
+              <Route exact path="/reminders" element={<RemindersPage />} />
             </Route>
           </Routes>
         </div>
