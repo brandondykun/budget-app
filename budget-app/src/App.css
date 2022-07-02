@@ -91,19 +91,19 @@ table {
   min-height: 75vh;
 }
 
-#add-transaction-form {
+.form {
   display: flex;
   flex-direction: column;
   text-align: left;
   font-size: 1.2rem;
 }
 
-#add-transaction-form > input {
+.form > input {
   margin-bottom: 1rem;
   padding: .3rem;
 }
 
-.add-transaction-button {
+.form-button {
   margin-top: 1rem;
   padding: .5rem;
   font-size: 1.2rem;
