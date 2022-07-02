@@ -52,9 +52,6 @@
   font-size: 1.2rem;
 }
 
-table, th, td {
-  border: 1px solid;
-}
 
 table {
   border-collapse: collapse;
@@ -62,19 +59,21 @@ table {
 }
 
 #transactions-table td, #transactions-table th {
-  border: 1px solid rgb(59, 59, 59);
   padding: 8px;
 }
 
-#transactions-table tr:nth-child(odd){background-color: #8585858c;}
 
-#transactions-table tr:nth-child(even){background-color: #f2f2f277;}
+.middle-column {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+
+
+}
 
 #transactions-table th {
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #41324c;
-  color: white;
+  color: purple;
 }
 
 #totals-table {
