@@ -1,3 +1,12 @@
+:root {
+  --white: #FBF6EF;
+  --light: #D4D9D3;
+  --medium: #8A9886;
+  --dark: #444D42;
+  --black: #272625;
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,12 +18,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgb(155, 87, 155);
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .primary-content {
   flex: 1;
-  background-color: rgb(252, 212, 219);
+  background-color: var(--light);
+  /* background: linear-gradient(rgb(196, 196, 196) 50%, rgb(255, 255, 255) 100%);; */
   border-radius: 25px 25px 0 0;
   margin-top: 1rem;
   padding: 1rem;
@@ -24,18 +35,18 @@
 .primary-nav {
   display: flex;
   justify-content: space-around;
-  background-color: rgb(155, 87, 155);
+  background-color: var(--white);
   padding: .5rem;
-  border-top: 1px solid purple;
+  border-top: 1px solid var(--medium);
 }
 
 .nav-link {
-  color: black;
+  color: var(--medium);
   text-decoration: none;
 }
 
 .nav-link.active {
-  color: white;
+  color: var(--dark);
   font-weight: bold;
 }
 
@@ -52,7 +63,6 @@
   font-size: 1.2rem;
 }
 
-
 table {
   border-collapse: collapse;
   table-layout: fixed;
@@ -62,33 +72,37 @@ table {
   padding: 8px;
 }
 
-
 .middle-column {
   border-right: 1px solid black;
   border-left: 1px solid black;
-
-
 }
 
 #transactions-table th {
   padding-top: 12px;
   padding-bottom: 12px;
-  color: purple;
+  color: var(--dark);
 }
 
 #totals-table {
   width: 90vw;
+  color: var(--black);
+  font-weight: bold;
 }
 
 #totals-table td {
   padding: 8px;
 }
 
+.totals-text {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
 .table-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 75vh;
+  min-height: 65vh;
 }
 
 .form {
@@ -99,19 +113,37 @@ table {
 }
 
 .form > input {
-  margin-bottom: 1rem;
-  padding: .3rem;
+  margin: .3rem 0 1rem 0;
+  padding: .5rem;
+  background-color: var(--white);
+  border: none;
+  font-size: 1.1rem;
+  color: var(--dark);
+  box-shadow: 0 0 4px var(--dark);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--black);
 }
 
 .form-button {
   margin-top: 1rem;
   padding: .5rem;
   font-size: 1.2rem;
-  background-color: #41324c;
-  border: 1px solid black;
-  color: white;
+  background-color: var(--dark);
+  border: none;
+  color: var(--white);
 }
 
 .page-title {
   margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.error-container {
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  color: var(--dark);
+  font-weight: bold;
 }
