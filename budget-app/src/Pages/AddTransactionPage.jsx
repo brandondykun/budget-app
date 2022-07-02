@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { addDoc, Timestamp } from "firebase/firestore";
+import { AuthContext } from "../Auth";
+import { useContext } from "react";
 
 const AddTransactionPage = ({ transactionsRef }) => {
   const [savedAmount, setSavedAmount] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
   const [date, setDate] = useState("");
+
+  const { currentUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +20,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
       saved: savedAmount * 100,
       paid: paidAmount * 100,
       date: fTimestamp,
+      userId: currentUser.uid,
     };
 
     await addDoc(transactionsRef, data);
@@ -23,7 +28,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
 
   return (
     <div>
-      <h1 className="page-title">Add Transaction</h1>
+      <h1 className="page-title">Add Savings</h1>
       <form id="add-transaction-form" onSubmit={handleSubmit}>
         <label htmlFor="paid">Amount Paid</label>
         <input
