@@ -32,7 +32,9 @@ const HomePage = ({ transactions }) => {
               return (
                 <tr className="transaction-list-item" key={transaction.id}>
                   <td>{date.toLocaleDateString()}</td>
-                  <td>${(transaction.paid / 100).toFixed(2)}</td>
+                  <td className="middle-column">
+                    ${(transaction.paid / 100).toFixed(2)}
+                  </td>
                   <td>${(transaction.saved / 100).toFixed(2)}</td>
                 </tr>
               );
