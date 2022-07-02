@@ -1,33 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { db } from "./firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import HomePage from "./Pages/HomePage";
 import AddTransactionPage from "./Pages/AddTransactionPage";
 import LoginPage from "./Pages/LoginPage";
 import NavBar from "./Components/NavBar";
+import SignUpPage from "./Pages/SignUpPage";
+import { AuthContext } from "./Auth";
 
 function App() {
   const [transactions, setTransactions] = useState(null);
 
+  const { currentUser } = useContext(AuthContext);
+
   const transactionsRef = collection(db, "transactions");
 
   useEffect(() => {
-    const getTransactions = async () => {
-      const transactions = await getDocs(transactionsRef);
-      const transactionsList = transactions.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      console.log("transactions list: ", transactionsList);
-      setTransactions(transactionsList);
-    };
-    getTransactions();
-  }, []);
+    if (currentUser) {
+      const getTransactions = async () => {
+        const q = query(
+          transactionsRef,
+          where("userId", "==", currentUser.uid)
+        );
+        const transactions = await getDocs(q);
+        const transactionsList = transactions.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setTransactions(transactionsList);
+      };
+      getTransactions();
+    }
+  }, [currentUser]);
 
   return (
     <div className="App">
+      {console.log("CURRENT USER: ", currentUser)}
       <Router>
         <div className="primary-content">
           <Routes>
@@ -36,6 +46,7 @@ function App() {
               element={<HomePage transactions={transactions} />}
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
             <Route
               path="/add-transaction"
               element={<AddTransactionPage transactionsRef={transactionsRef} />}
