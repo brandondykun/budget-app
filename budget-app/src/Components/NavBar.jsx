@@ -37,7 +37,7 @@ const NavBar = () => {
         </NavLink>
       )}
       {currentUser && (
-        <div onClick={logout}>
+        <div className="nav-link" onClick={logout}>
           <FontAwesomeIcon icon={faRightFromBracket} size="lg" />
         </div>
       )}
