@@ -9,6 +9,7 @@ import LoginPage from "./Pages/LoginPage";
 import NavBar from "./Components/NavBar";
 import SignUpPage from "./Pages/SignUpPage";
 import { AuthContext } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const [transactions, setTransactions] = useState(null);
@@ -41,16 +42,24 @@ function App() {
       <Router>
         <div className="primary-content">
           <Routes>
-            <Route
-              path="/"
-              element={<HomePage transactions={transactions} />}
-            />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
-            <Route
-              path="/add-transaction"
-              element={<AddTransactionPage transactionsRef={transactionsRef} />}
-            />
+            <Route exact path="/" element={<PrivateRoute />}>
+              <Route
+                exact
+                path="/"
+                element={<HomePage transactions={transactions} />}
+              />
+            </Route>
+            <Route exact path="/add-transaction" element={<PrivateRoute />}>
+              <Route
+                exact
+                path="/add-transaction"
+                element={
+                  <AddTransactionPage transactionsRef={transactionsRef} />
+                }
+              />
+            </Route>
           </Routes>
         </div>
         <NavBar />
