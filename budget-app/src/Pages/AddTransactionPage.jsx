@@ -29,7 +29,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
   return (
     <div>
       <h1 className="page-title">Add Savings</h1>
-      <form id="add-transaction-form" onSubmit={handleSubmit}>
+      <form id="add-transaction-form" className="form" onSubmit={handleSubmit}>
         <label htmlFor="paid">Amount Paid</label>
         <input
           type="number"
@@ -62,7 +62,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button className="add-transaction-button" type="submit">
+        <button className="form-button" type="submit">
           Add
         </button>
       </form>
