@@ -63,7 +63,7 @@ const HomePage = ({ transactions }) => {
           </tbody>
         </table>
       </div>
-      <div>
+      <div className="totals-text">
         You've saved{" "}
         {totalSaved && totalPaid && parseInt((totalSaved / totalPaid) * 100)}%
         of your earnings!
