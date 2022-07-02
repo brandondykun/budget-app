@@ -35,7 +35,8 @@ const SignUpPage = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <h1 className="page-title">Sign Up</h1>
+      <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -58,9 +59,11 @@ const SignUpPage = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button type="submit">Sign Up</button>
+        <button className="form-button" type="submit">
+          Sign Up
+        </button>
       </form>
-      {error && <div>{error}</div>}
+      {error && <div className="error-container">{error}</div>}
     </div>
   );
 };
