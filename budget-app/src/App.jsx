@@ -13,33 +13,48 @@ import PrivateRoute from "./PrivateRoute";
 import RemindersPage from "./Pages/RemindersPage";
 
 function App() {
-  const [transactions, setTransactions] = useState(null);
+  const [transactions, setTransactions] = useState([]);
+  const [reminders, setReminders] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
 
   const transactionsRef = collection(db, "transactions");
+  const remindersRef = collection(db, "reminders");
 
   useEffect(() => {
     if (currentUser) {
-      const getTransactions = async () => {
-        const q = query(
+      const getUserData = async () => {
+        const transactionsQuery = query(
           transactionsRef,
           where("userId", "==", currentUser.uid)
         );
-        const transactions = await getDocs(q);
+        const remindersQuery = query(
+          remindersRef,
+          where("userId", "==", currentUser.uid)
+        );
+
+        const transactions = await getDocs(transactionsQuery);
+        const reminders = await getDocs(remindersQuery);
+
         const transactionsList = transactions.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }));
+
+        const remindersList = reminders.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
         setTransactions(transactionsList);
+        setReminders(remindersList);
       };
-      getTransactions();
+      getUserData();
     }
   }, [currentUser]);
 
   return (
     <div className="App">
-      {console.log("CURRENT USER: ", currentUser)}
       <Router>
         <div className="primary-content">
           <Routes>
@@ -57,12 +72,26 @@ function App() {
                 exact
                 path="/add-transaction"
                 element={
-                  <AddTransactionPage transactionsRef={transactionsRef} />
+                  <AddTransactionPage
+                    transactionsRef={transactionsRef}
+                    transactions={transactions}
+                    setTransactions={setTransactions}
+                  />
                 }
               />
             </Route>
             <Route exact path="/reminders" element={<PrivateRoute />}>
-              <Route exact path="/reminders" element={<RemindersPage />} />
+              <Route
+                exact
+                path="/reminders"
+                element={
+                  <RemindersPage
+                    reminders={reminders}
+                    setReminders={setReminders}
+                    remindersRef={remindersRef}
+                  />
+                }
+              />
             </Route>
           </Routes>
         </div>
