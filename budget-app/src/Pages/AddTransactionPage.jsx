@@ -3,15 +3,22 @@ import { addDoc, Timestamp } from "firebase/firestore";
 import { AuthContext } from "../Auth";
 import { useContext } from "react";
 
-const AddTransactionPage = ({ transactionsRef }) => {
+const AddTransactionPage = ({
+  transactionsRef,
+  transactions,
+  setTransactions,
+}) => {
   const [savedAmount, setSavedAmount] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
   const [date, setDate] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const { currentUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setSuccessMessage("");
 
     const timeMilliSeconds = Math.floor(new Date(date).getTime());
     const fTimestamp = Timestamp.fromMillis(timeMilliSeconds);
@@ -23,14 +30,22 @@ const AddTransactionPage = ({ transactionsRef }) => {
       userId: currentUser.uid,
     };
 
-    await addDoc(transactionsRef, data);
+    const response = await addDoc(transactionsRef, data);
+    if (response.id) {
+      const updatedData = { ...data, id: response.id };
+      setTransactions([...transactions, updatedData]);
+      setDate("");
+      setSavedAmount("");
+      setPaidAmount("");
+      setSuccessMessage("Ayyyyy you gettin rich!");
+    }
   };
 
   return (
     <div>
-      <h1 className="page-title">Add Savings</h1>
+      <h1 className="page-title">add savings</h1>
       <form id="add-transaction-form" className="form" onSubmit={handleSubmit}>
-        <label htmlFor="paid">Amount Paid</label>
+        <label htmlFor="paid">amount paid</label>
         <input
           type="number"
           min="0.00"
@@ -42,7 +57,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
           onChange={(e) => setPaidAmount(e.target.value)}
         />
 
-        <label htmlFor="saved">Amount Saved</label>
+        <label htmlFor="saved">amount saved</label>
         <input
           type="number"
           min="0.00"
@@ -54,7 +69,7 @@ const AddTransactionPage = ({ transactionsRef }) => {
           onChange={(e) => setSavedAmount(e.target.value)}
         />
 
-        <label htmlFor="date">Date</label>
+        <label htmlFor="date">date</label>
         <input
           type="datetime-local"
           id="date"
@@ -63,9 +78,12 @@ const AddTransactionPage = ({ transactionsRef }) => {
         />
 
         <button className="form-button" type="submit">
-          Add
+          add
         </button>
       </form>
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
     </div>
   );
 };
