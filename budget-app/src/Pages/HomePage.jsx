@@ -24,7 +24,7 @@ const HomePage = ({ transactions }) => {
   }, [transactions]);
 
   return (
-    <>
+    <div className="homepage-container">
       <h1 className="page-title">homepage</h1>
       <div id="totals-table">
         <div className="totals-table-total">
@@ -79,7 +79,7 @@ const HomePage = ({ transactions }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 
