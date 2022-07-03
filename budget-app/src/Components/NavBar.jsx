@@ -8,7 +8,7 @@ import {
   faRightToBracket,
   faUserPlus,
   faBell,
-  faB,
+  faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth } from "../firebase-config";
 import { AuthContext } from "../Auth";
@@ -18,13 +18,9 @@ const NavBar = () => {
   const { currentUser } = useContext(AuthContext);
 
   const logout = (e) => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signOut(auth).catch((error) => {
+      console.log(error);
+    });
   };
   return (
     <nav className="primary-nav">
@@ -40,7 +36,7 @@ const NavBar = () => {
       )}
       {currentUser && (
         <NavLink className="nav-link" to="/reminders">
-          <FontAwesomeIcon icon={faBell} size="lg" />
+          <FontAwesomeIcon icon={faListCheck} size="lg" />
         </NavLink>
       )}
       {currentUser && (
