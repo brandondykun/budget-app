@@ -35,9 +35,9 @@ const SignUpPage = () => {
   };
   return (
     <div>
-      <h1 className="page-title">Sign Up</h1>
+      <h1 className="page-title">sign up</h1>
       <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">email</label>
         <input
           type="email"
           id="email"
@@ -45,14 +45,14 @@ const SignUpPage = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">password</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <label htmlFor="confirm-password">Confirm Password</label>
+        <label htmlFor="confirm-password">confirm password</label>
         <input
           type="password"
           id="confirm-password"
@@ -60,7 +60,7 @@ const SignUpPage = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <button className="form-button" type="submit">
-          Sign Up
+          sign up
         </button>
       </form>
       {error && <div className="error-container">{error}</div>}
