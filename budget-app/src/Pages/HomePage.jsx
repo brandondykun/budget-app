@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const HomePage = ({ transactions }) => {
   const [totalPaid, setTotalPaid] = useState(0);
   const [totalSaved, setTotalSaved] = useState(0);
+  const [sortedTransactions, setSortedTransactions] = useState([]);
 
   useEffect(() => {
     const paidTotal = transactions?.reduce((acc, curr) => {
@@ -12,25 +13,61 @@ const HomePage = ({ transactions }) => {
       return (acc += curr.saved);
     }, 0);
 
+    const sortedTransactions = transactions.sort(function (a, b) {
+      return b.date - a.date;
+    });
+
+    setSortedTransactions(sortedTransactions);
+
     setTotalPaid(paidTotal);
     setTotalSaved(savedTotal);
   }, [transactions]);
 
   return (
     <>
-      <h1 className="page-title">Hompage</h1>
+      <h1 className="page-title">homepage</h1>
+      <div id="totals-table">
+        <div className="totals-table-total">
+          <div className="total-title">total paid: </div>
+          <div className="poppins-font">
+            $
+            {totalPaid &&
+              (totalPaid / 100)
+                .toFixed(2)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+        </div>
+        <div className="totals-table-total">
+          <div className="total-title">total saved:</div>
+          <div className="poppins-font">
+            $
+            {totalSaved &&
+              (totalSaved / 100)
+                .toFixed(2)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+        </div>
+      </div>
+      <div className="totals-text">
+        you've saved{" "}
+        {totalSaved && totalPaid && parseInt((totalSaved / totalPaid) * 100)}%
+        of your earnings!
+      </div>
       <div className="table-container">
         <table id="transactions-table" className="transactions-list">
           <tbody>
             <tr className="transactions-list-title">
-              <th>Date</th>
-              <th>Paid</th>
-              <th>Saved</th>
+              <th>date</th>
+              <th>paid</th>
+              <th>saved</th>
             </tr>
-            {transactions?.map((transaction) => {
+            {sortedTransactions?.map((transaction) => {
               const date = new Date(transaction.date.seconds * 1000);
               return (
-                <tr className="transaction-list-item" key={transaction.id}>
+                <tr
+                  className="transaction-list-item poppins-font"
+                  key={transaction.id}
+                >
                   <td>{date.toLocaleDateString()}</td>
                   <td className="middle-column">
                     ${(transaction.paid / 100).toFixed(2)}
@@ -41,32 +78,6 @@ const HomePage = ({ transactions }) => {
             })}
           </tbody>
         </table>
-        <table id="totals-table">
-          <tbody>
-            <tr>
-              <td>Total</td>
-              <td>
-                $
-                {totalPaid &&
-                  (totalPaid / 100)
-                    .toFixed(2)
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </td>
-              <td>
-                $
-                {totalSaved &&
-                  (totalSaved / 100)
-                    .toFixed(2)
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="totals-text">
-        You've saved{" "}
-        {totalSaved && totalPaid && parseInt((totalSaved / totalPaid) * 100)}%
-        of your earnings!
       </div>
     </>
   );
