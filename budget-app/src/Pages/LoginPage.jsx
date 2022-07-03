@@ -15,8 +15,6 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  // const auth = getAuth();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -38,9 +36,9 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1 className="page-title">Log In</h1>
+      <h1 className="page-title">log in</h1>
       <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">email</label>
         <input
           type="email"
           id="email"
@@ -48,7 +46,7 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">password</label>
         <input
           type="password"
           id="password"
@@ -56,10 +54,10 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className="form-button" type="submit">
-          Log In
+          log in
         </button>
       </form>
-      {error && <div>{error}</div>}
+      {error && <div className="error-container">{error}</div>}
     </div>
   );
 };
