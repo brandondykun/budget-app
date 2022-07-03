@@ -26,32 +26,32 @@ const NavBar = () => {
     <nav className="primary-nav">
       {currentUser && (
         <NavLink className="nav-link" to="/">
-          <FontAwesomeIcon icon={faHouse} size="lg" />
+          <FontAwesomeIcon icon={faHouse} size="xl" />
         </NavLink>
       )}
       {currentUser && (
         <NavLink className="nav-link" to="/add-transaction">
-          <FontAwesomeIcon icon={faCirclePlus} size="lg" />
+          <FontAwesomeIcon icon={faCirclePlus} size="xl" />
         </NavLink>
       )}
       {currentUser && (
         <NavLink className="nav-link" to="/reminders">
-          <FontAwesomeIcon icon={faListCheck} size="lg" />
+          <FontAwesomeIcon icon={faListCheck} size="xl" />
         </NavLink>
       )}
       {currentUser && (
         <div className="nav-link" onClick={logout}>
-          <FontAwesomeIcon icon={faRightFromBracket} size="lg" />
+          <FontAwesomeIcon icon={faRightFromBracket} size="xl" />
         </div>
       )}
       {!currentUser && (
         <NavLink className="nav-link" to="/login">
-          <FontAwesomeIcon icon={faRightToBracket} size="lg" />
+          <FontAwesomeIcon icon={faRightToBracket} size="xl" />
         </NavLink>
       )}
       {!currentUser && (
         <NavLink className="nav-link" to="/sign-up">
-          <FontAwesomeIcon icon={faUserPlus} size="lg" />
+          <FontAwesomeIcon icon={faUserPlus} size="xl" />
         </NavLink>
       )}
     </nav>
