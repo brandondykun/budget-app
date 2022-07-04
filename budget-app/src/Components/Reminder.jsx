@@ -9,6 +9,10 @@ const Reminder = ({ reminder, reminders, setReminders }) => {
   const reminderRef = doc(db, "reminders", reminder.id);
 
   const handleChange = async (e) => {
+    const updatedReminders = reminders.map((r) => {
+      return r.id === reminder.id ? { ...r, complete: !r.complete } : r;
+    });
+    setReminders(updatedReminders);
     setChecked(!checked);
     updateDoc(reminderRef, {
       complete: !checked,
