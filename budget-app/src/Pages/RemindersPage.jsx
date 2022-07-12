@@ -3,11 +3,35 @@ import Reminder from "../Components/Reminder";
 import { addDoc, Timestamp } from "firebase/firestore";
 import { AuthContext } from "../Auth";
 import { useContext } from "react";
+import { useEffect } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase-config";
 
-const RemindersPage = ({ reminders, setReminders, remindersRef }) => {
+const RemindersPage = () => {
   const [text, setText] = useState("");
+  const [reminders, setReminders] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
+  const remindersRef = collection(db, "reminders");
+
+  useEffect(() => {
+    if (currentUser) {
+      const getReminders = async () => {
+        const remindersQuery = query(
+          remindersRef,
+          where("userId", "==", currentUser.uid)
+        );
+        const reminders = await getDocs(remindersQuery);
+        const remindersList = reminders.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setReminders(remindersList);
+      };
+      getReminders();
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
