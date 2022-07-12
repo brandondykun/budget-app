@@ -25,7 +25,7 @@ const HomePage = ({ transactions }) => {
 
   return (
     <div className="homepage-container">
-      <h1 className="page-title">homepage</h1>
+      <h1 className="page-title">home</h1>
       <div id="totals-table">
         <div className="totals-table-total">
           <div className="total-title">total paid: </div>
