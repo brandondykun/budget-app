@@ -107,8 +107,8 @@ table {
 }
 
 .middle-column {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-right: 1px solid var(--dark);
+  border-left: 1px solid var(--dark);
 }
 
 #transactions-table th {
@@ -281,6 +281,7 @@ input[type="search"] {
   cursor: pointer;
   color: red;
 }
+
 
 @media only screen and (min-width: 500px) {
   .form {
