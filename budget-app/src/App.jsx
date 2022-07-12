@@ -11,6 +11,7 @@ import SignUpPage from "./Pages/SignUpPage";
 import { AuthContext } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import RemindersPage from "./Pages/RemindersPage";
+import Footer from "./Components/Footer";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -75,6 +76,7 @@ function App() {
           </div>
           <NavBar />
         </div>
+        <Footer />
       </Router>
     </div>
   );
