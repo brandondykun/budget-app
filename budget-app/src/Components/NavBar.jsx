@@ -37,7 +37,7 @@ const NavBar = () => {
             icon={faCirclePlus}
             size="xl"
           />
-          <div className="nav-link-text">add pay</div>
+          <div className="nav-link-text">add savings</div>
         </NavLink>
       )}
       {currentUser && (
