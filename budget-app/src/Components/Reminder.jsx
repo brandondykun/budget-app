@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { useState } from "react";
 
@@ -8,7 +8,7 @@ const Reminder = ({ reminder, reminders, setReminders }) => {
   const [checked, setChecked] = useState(reminder.complete);
   const reminderRef = doc(db, "reminders", reminder.id);
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const updatedReminders = reminders.map((r) => {
       return r.id === reminder.id ? { ...r, complete: !r.complete } : r;
     });
@@ -19,13 +19,13 @@ const Reminder = ({ reminder, reminders, setReminders }) => {
     }).catch((error) => console.log("ERROR: ", error));
   };
 
-  const handleDelete = async (e) => {
+  const handleDelete = (e) => {
     setReminders(
       reminders.filter((rem) => {
         return rem.id !== reminder.id;
       })
     );
-    await deleteDoc(reminderRef, reminder.id).catch((error) =>
+    deleteDoc(reminderRef, reminder.id).catch((error) =>
       console.log("ERROR: ", error)
     );
   };
