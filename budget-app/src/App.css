@@ -12,6 +12,10 @@
   padding: 0;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -55,6 +59,19 @@
 
 .nav-link-text {
   display: none;
+}
+
+.link-icon:hover {
+  cursor: pointer;
+}
+
+.primary-footer {
+  padding: .5rem;
+  font-size: .9rem;
+  display: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border-top: 1px solid var(--medium)
 }
 
 .flex-row {
@@ -228,6 +245,10 @@ input[type="search"] {
  box-shadow: none;
 }
 
+.reminder-checkbox:hover {
+  cursor: pointer;
+}
+
 .reminders-list-container {
   margin-top: 2rem;
 }
@@ -254,6 +275,11 @@ input[type="search"] {
 .trash-can {
   padding: .2rem .5rem;
   color: var(--dark);
+}
+
+.trash-can:hover {
+  cursor: pointer;
+  color: red;
 }
 
 @media only screen and (min-width: 500px) {
@@ -290,6 +316,10 @@ input[type="search"] {
   }
 
   .nav-link-text {
+    display: block;
+  }
+
+  .primary-footer {
     display: block;
   }
 }
