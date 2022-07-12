@@ -43,36 +43,38 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div className="primary-content">
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/sign-up" element={<SignUpPage />} />
-            <Route exact path="/" element={<PrivateRoute />}>
-              <Route
-                exact
-                path="/"
-                element={<HomePage transactions={transactions} />}
-              />
-            </Route>
-            <Route exact path="/add-transaction" element={<PrivateRoute />}>
-              <Route
-                exact
-                path="/add-transaction"
-                element={
-                  <AddTransactionPage
-                    transactionsRef={transactionsRef}
-                    transactions={transactions}
-                    setTransactions={setTransactions}
-                  />
-                }
-              />
-            </Route>
-            <Route exact path="/reminders" element={<PrivateRoute />}>
-              <Route exact path="/reminders" element={<RemindersPage />} />
-            </Route>
-          </Routes>
+        <div className="flex-invert">
+          <div className="primary-content">
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/sign-up" element={<SignUpPage />} />
+              <Route exact path="/" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/"
+                  element={<HomePage transactions={transactions} />}
+                />
+              </Route>
+              <Route exact path="/add-transaction" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/add-transaction"
+                  element={
+                    <AddTransactionPage
+                      transactionsRef={transactionsRef}
+                      transactions={transactions}
+                      setTransactions={setTransactions}
+                    />
+                  }
+                />
+              </Route>
+              <Route exact path="/reminders" element={<PrivateRoute />}>
+                <Route exact path="/reminders" element={<RemindersPage />} />
+              </Route>
+            </Routes>
+          </div>
+          <NavBar />
         </div>
-        <NavBar />
       </Router>
     </div>
   );

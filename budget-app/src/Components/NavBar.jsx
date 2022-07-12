@@ -26,32 +26,50 @@ const NavBar = () => {
     <nav className="primary-nav">
       {currentUser && (
         <NavLink className="nav-link" to="/">
-          <FontAwesomeIcon icon={faHouse} size="xl" />
+          <FontAwesomeIcon className="link-icon" icon={faHouse} size="xl" />
+          <div className="nav-link-text">home</div>
         </NavLink>
       )}
       {currentUser && (
         <NavLink className="nav-link" to="/add-transaction">
-          <FontAwesomeIcon icon={faCirclePlus} size="xl" />
+          <FontAwesomeIcon
+            className="link-icon"
+            icon={faCirclePlus}
+            size="xl"
+          />
+          <div className="nav-link-text">add pay</div>
         </NavLink>
       )}
       {currentUser && (
         <NavLink className="nav-link" to="/reminders">
-          <FontAwesomeIcon icon={faListCheck} size="xl" />
+          <FontAwesomeIcon className="link-icon" icon={faListCheck} size="xl" />
+          <div className="nav-link-text">reminders</div>
         </NavLink>
       )}
       {currentUser && (
         <div className="nav-link" onClick={logout}>
-          <FontAwesomeIcon icon={faRightFromBracket} size="xl" />
+          <FontAwesomeIcon
+            className="link-icon"
+            icon={faRightFromBracket}
+            size="xl"
+          />
+          <div className="nav-link-text">log out</div>
         </div>
       )}
       {!currentUser && (
         <NavLink className="nav-link" to="/login">
-          <FontAwesomeIcon icon={faRightToBracket} size="xl" />
+          <FontAwesomeIcon
+            className="link-icon"
+            icon={faRightToBracket}
+            size="xl"
+          />
+          <div className="nav-link-text">log in</div>
         </NavLink>
       )}
       {!currentUser && (
         <NavLink className="nav-link" to="/sign-up">
-          <FontAwesomeIcon icon={faUserPlus} size="xl" />
+          <FontAwesomeIcon className="link-icon" icon={faUserPlus} size="xl" />
+          <div className="nav-link-text">sign up</div>
         </NavLink>
       )}
     </nav>
