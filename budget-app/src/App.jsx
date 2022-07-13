@@ -12,6 +12,7 @@ import { AuthContext } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import RemindersPage from "./Pages/RemindersPage";
 import Footer from "./Components/Footer";
+import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -34,7 +35,6 @@ function App() {
           ...doc.data(),
           id: doc.id,
         }));
-
         setTransactions(transactionsList);
       };
       getTransactions();
@@ -71,6 +71,13 @@ function App() {
               </Route>
               <Route exact path="/reminders" element={<PrivateRoute />}>
                 <Route exact path="/reminders" element={<RemindersPage />} />
+              </Route>
+              <Route exact path="/details/:id" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/details/:id"
+                  element={<TransactionDetailsPage />}
+                />
               </Route>
             </Routes>
           </div>
