@@ -8,6 +8,7 @@ const TransactionDetailsPage = () => {
   const [paid, setPaid] = useState("");
   const [saved, setSaved] = useState("");
   const [formattedDate, setFormattedDate] = useState("");
+  const [confirmDeleteActive, setConfirmDeleteActive] = useState(false);
 
   const { id } = useParams();
 
@@ -74,17 +75,38 @@ const TransactionDetailsPage = () => {
               `You saved ${parseInt((saved / paid) * 100)}% of this pay!`}
           </div>
         </div>
-        <div className="details-button-container">
-          <button
-            className="form-button small-button"
-            onClick={() => navigate(`/details/${id}/edit`)}
-          >
-            edit
-          </button>
-          <button className="form-button small-button" onClick={handleDelete}>
-            delete
-          </button>
-        </div>
+        {!confirmDeleteActive && (
+          <div className="details-button-container">
+            <button
+              className="form-button small-button"
+              onClick={() => navigate(`/details/${id}/edit`)}
+            >
+              edit
+            </button>
+            <button
+              className="form-button small-button"
+              onClick={() => setConfirmDeleteActive(true)}
+            >
+              delete
+            </button>
+          </div>
+        )}
+        {confirmDeleteActive && (
+          <div className="details-button-container">
+            <div className="warning-text">
+              are you sure you want to delete this entry?
+            </div>
+            <button className="form-button small-button" onClick={handleDelete}>
+              yes
+            </button>
+            <button
+              className="form-button small-button"
+              onClick={() => setConfirmDeleteActive(false)}
+            >
+              no
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
