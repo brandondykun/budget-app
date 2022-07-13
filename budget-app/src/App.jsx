@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import RemindersPage from "./Pages/RemindersPage";
 import Footer from "./Components/Footer";
 import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
+import EditTransactionPage from "./Pages/EditTransactionPage";
 
 function App() {
   return (
@@ -31,6 +32,13 @@ function App() {
               </Route>
               <Route exact path="/reminders" element={<PrivateRoute />}>
                 <Route exact path="/reminders" element={<RemindersPage />} />
+              </Route>
+              <Route exact path="/details/:id/edit" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/details/:id/edit"
+                  element={<EditTransactionPage />}
+                />
               </Route>
               <Route exact path="/details/:id" element={<PrivateRoute />}>
                 <Route
