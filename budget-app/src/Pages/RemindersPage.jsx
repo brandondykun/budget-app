@@ -15,8 +15,12 @@ const RemindersPage = () => {
   const remindersRef = collection(db, "reminders");
 
   useEffect(() => {
-    if (currentUser) {
-      const getReminders = async () => {
+    if (!currentUser) return;
+
+    let mounted = true;
+
+    const getReminders = async () => {
+      try {
         const remindersQuery = query(
           remindersRef,
           where("userId", "==", currentUser.uid)
@@ -26,11 +30,17 @@ const RemindersPage = () => {
           ...doc.data(),
           id: doc.id,
         }));
+        if (mounted) setReminders(remindersList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        setReminders(remindersList);
-      };
-      getReminders();
-    }
+    getReminders();
+
+    return function cleanup() {
+      mounted = false;
+    };
   }, []);
 
   const handleSubmit = async (e) => {
@@ -60,7 +70,6 @@ const RemindersPage = () => {
         <input
           type="text"
           id="reminder-text-input"
-          //   placeholder=""
           value={text}
           onChange={(e) => setText(e.target.value)}
         />

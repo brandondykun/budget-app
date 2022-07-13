@@ -1,6 +1,7 @@
 :root {
   --white: #FBF6EF;
   --light: #D4D9D3;
+  --light-highlighted: #dcdfdc;
   --medium: #8A9886;
   --dark: #444D42;
   --black: #272625;
@@ -93,6 +94,11 @@ button:hover {
   font-weight: bold;
 }
 
+.transaction-list-item:hover {
+  cursor: pointer;
+  background-color: var(--light-highlighted);
+}
+
 .poppins-font {
   font-family: 'Poppins', sans-serif;
 }
@@ -107,8 +113,13 @@ table {
 }
 
 .middle-column {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-right: 1px solid var(--dark);
+  border-left: 1px solid var(--dark);
+}
+
+.middle-column:hover {
+  border-right: 1px solid var(--medium);
+  border-left: 1px solid var(--medium);
 }
 
 #transactions-table th {
@@ -193,9 +204,20 @@ input[type="search"] {
   font-weight: bold;
 }
 
+.small-button {
+  width: 100%;
+  margin: 1rem auto 0 auto;
+}
+
 .add-button {
   padding-right: 1rem;
   padding-left: 1rem
+}
+
+.cancel-button {
+  width: 100%;
+  margin: 1rem auto;
+
 }
 
 .single-row-form {
@@ -257,7 +279,7 @@ input[type="search"] {
   display: flex;
 }
 
-.success-message {
+.error-message {
   margin-top: 2rem;
   font-size: 1.2rem;
 }
@@ -282,15 +304,63 @@ input[type="search"] {
   color: red;
 }
 
+.details-page-text-container {
+  font-size: 1.3rem;
+  margin: 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  background-color: var(--medium);
+  color: var(--white);
+  padding: 1rem;
+}
+
+.details-button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.date-text {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.percent-text {
+  font-family: 'Lobster Two', cursive;
+  margin-top: 2rem;
+  font-size: 1.7rem;
+}
+
+.warning-text {
+  font-size: 1.3rem;
+  color: red;
+  margin: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 500px) {
   .form {
     width: 500px;
     margin: auto
   }
 
+  .cancel-button  {
+    width: 500px;
+  }
+
   .reminders-list-container {
     width: 500px;
     margin: 2rem auto 2rem auto;
+  }
+
+  .details-page-text-container {
+    max-width: 500px;
+    margin: 2rem auto 0 auto;
+  }
+
+  .small-button {
+    max-width: 500px;
   }
 }
 

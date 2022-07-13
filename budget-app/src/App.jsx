@@ -1,46 +1,17 @@
-import { useState, useEffect, useContext } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { db } from "./firebase-config";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import AddTransactionPage from "./Pages/AddTransactionPage";
 import LoginPage from "./Pages/LoginPage";
 import NavBar from "./Components/NavBar";
 import SignUpPage from "./Pages/SignUpPage";
-import { AuthContext } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import RemindersPage from "./Pages/RemindersPage";
 import Footer from "./Components/Footer";
+import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
+import EditTransactionPage from "./Pages/EditTransactionPage";
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
-
-  const { currentUser } = useContext(AuthContext);
-
-  const transactionsRef = collection(db, "transactions");
-
-  useEffect(() => {
-    if (currentUser) {
-      const getTransactions = async () => {
-        const transactionsQuery = query(
-          transactionsRef,
-          where("userId", "==", currentUser.uid)
-        );
-
-        const transactions = await getDocs(transactionsQuery);
-
-        const transactionsList = transactions.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-
-        setTransactions(transactionsList);
-      };
-      getTransactions();
-    }
-  }, [currentUser]);
-
   return (
     <div className="App">
       <Router>
@@ -50,27 +21,31 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<SignUpPage />} />
               <Route exact path="/" element={<PrivateRoute />}>
-                <Route
-                  exact
-                  path="/"
-                  element={<HomePage transactions={transactions} />}
-                />
+                <Route exact path="/" element={<HomePage />} />
               </Route>
               <Route exact path="/add-transaction" element={<PrivateRoute />}>
                 <Route
                   exact
                   path="/add-transaction"
-                  element={
-                    <AddTransactionPage
-                      transactionsRef={transactionsRef}
-                      transactions={transactions}
-                      setTransactions={setTransactions}
-                    />
-                  }
+                  element={<AddTransactionPage />}
                 />
               </Route>
               <Route exact path="/reminders" element={<PrivateRoute />}>
                 <Route exact path="/reminders" element={<RemindersPage />} />
+              </Route>
+              <Route exact path="/details/:id/edit" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/details/:id/edit"
+                  element={<EditTransactionPage />}
+                />
+              </Route>
+              <Route exact path="/details/:id" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/details/:id"
+                  element={<TransactionDetailsPage />}
+                />
               </Route>
             </Routes>
           </div>

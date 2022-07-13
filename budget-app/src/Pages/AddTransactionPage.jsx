@@ -2,42 +2,58 @@ import { useState } from "react";
 import { addDoc, Timestamp } from "firebase/firestore";
 import { AuthContext } from "../Auth";
 import { useContext } from "react";
+import { collection } from "firebase/firestore";
+import { db } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 
-const AddTransactionPage = ({
-  transactionsRef,
-  transactions,
-  setTransactions,
-}) => {
+const AddTransactionPage = () => {
   const [savedAmount, setSavedAmount] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
   const [date, setDate] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const transactionsRef = collection(db, "transactions");
 
   const { currentUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setSuccessMessage("");
+    setErrorMessage("");
+    if (!paidAmount) {
+      setErrorMessage("Please enter an amount paid.");
+      return;
+    }
+    if (!savedAmount) {
+      setErrorMessage("Please enter an amount saved.");
+      return;
+    }
+    if (!date) {
+      setErrorMessage("Please enter a date.");
+      return;
+    }
 
-    const timeMilliSeconds = Math.floor(new Date(date).getTime());
-    const fTimestamp = Timestamp.fromMillis(timeMilliSeconds);
+    try {
+      const timeMilliSeconds = Math.floor(new Date(date).getTime());
+      const fTimestamp = Timestamp.fromMillis(timeMilliSeconds);
 
-    const data = {
-      saved: savedAmount * 100,
-      paid: paidAmount * 100,
-      date: fTimestamp,
-      userId: currentUser.uid,
-    };
+      const data = {
+        saved: savedAmount * 100,
+        paid: paidAmount * 100,
+        date: fTimestamp,
+        userId: currentUser.uid,
+      };
 
-    const response = await addDoc(transactionsRef, data);
-    if (response.id) {
-      const updatedData = { ...data, id: response.id };
-      setTransactions([...transactions, updatedData]);
+      await addDoc(transactionsRef, data);
       setDate("");
       setSavedAmount("");
       setPaidAmount("");
-      setSuccessMessage("Ayyyyy you gettin rich!");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("There was a problem. Please Try again.");
     }
   };
 
@@ -81,9 +97,7 @@ const AddTransactionPage = ({
           add
         </button>
       </form>
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
   );
 };
