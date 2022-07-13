@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import AddTransactionPage from "./Pages/AddTransactionPage";
 import LoginPage from "./Pages/LoginPage";
@@ -47,6 +52,7 @@ function App() {
                   element={<TransactionDetailsPage />}
                 />
               </Route>
+              <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </div>
           <NavBar />
