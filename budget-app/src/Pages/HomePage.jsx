@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = ({ transactions }) => {
   const [totalPaid, setTotalPaid] = useState(0);
   const [totalSaved, setTotalSaved] = useState(0);
   const [sortedTransactions, setSortedTransactions] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const paidTotal = transactions?.reduce((acc, curr) => {
@@ -67,6 +70,7 @@ const HomePage = ({ transactions }) => {
                 <tr
                   className="transaction-list-item poppins-font"
                   key={transaction.id}
+                  onClick={() => navigate(`/details/${transaction.id}`)}
                 >
                   <td>{date.toLocaleDateString()}</td>
                   <td className="middle-column">
