@@ -1,30 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase-config";
+import { AuthContext } from ".././Auth";
 
-const HomePage = ({ transactions }) => {
-  const [totalPaid, setTotalPaid] = useState(0);
-  const [totalSaved, setTotalSaved] = useState(0);
-  const [sortedTransactions, setSortedTransactions] = useState([]);
+const HomePage = () => {
+  const [transactions, setTransactions] = useState([]);
 
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+  const transactionsRef = collection(db, "transactions");
 
   useEffect(() => {
-    const paidTotal = transactions?.reduce((acc, curr) => {
-      return (acc += curr.paid);
-    }, 0);
-    const savedTotal = transactions?.reduce((acc, curr) => {
-      return (acc += curr.saved);
-    }, 0);
+    if (currentUser) {
+      const getTransactions = async () => {
+        const transactionsQuery = query(
+          transactionsRef,
+          where("userId", "==", currentUser.uid)
+        );
 
-    const sortedTransactions = transactions.sort(function (a, b) {
-      return b.date - a.date;
-    });
+        const transactions = await getDocs(transactionsQuery);
 
-    setSortedTransactions(sortedTransactions);
+        const transactionsList = transactions.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setTransactions(transactionsList);
+      };
+      getTransactions();
+    }
+  }, [currentUser]);
 
-    setTotalPaid(paidTotal);
-    setTotalSaved(savedTotal);
-  }, [transactions]);
+  const paidTotal = transactions?.reduce((acc, curr) => {
+    return (acc += curr.paid);
+  }, 0);
+  const savedTotal = transactions?.reduce((acc, curr) => {
+    return (acc += curr.saved);
+  }, 0);
+  const sortedTransactions = transactions.sort(function (a, b) {
+    return b.date - a.date;
+  });
 
   return (
     <div className="homepage-container">
@@ -34,8 +49,8 @@ const HomePage = ({ transactions }) => {
           <div className="total-title">total paid: </div>
           <div className="poppins-font">
             $
-            {totalPaid &&
-              (totalPaid / 100)
+            {paidTotal &&
+              (paidTotal / 100)
                 .toFixed(2)
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
@@ -44,8 +59,8 @@ const HomePage = ({ transactions }) => {
           <div className="total-title">total saved:</div>
           <div className="poppins-font">
             $
-            {totalSaved &&
-              (totalSaved / 100)
+            {savedTotal &&
+              (savedTotal / 100)
                 .toFixed(2)
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
@@ -53,7 +68,7 @@ const HomePage = ({ transactions }) => {
       </div>
       <div className="totals-text">
         you've saved{" "}
-        {totalSaved && totalPaid && parseInt((totalSaved / totalPaid) * 100)}%
+        {savedTotal && paidTotal && parseInt((savedTotal / paidTotal) * 100)}%
         of your earnings!
       </div>
       <div className="table-container">
