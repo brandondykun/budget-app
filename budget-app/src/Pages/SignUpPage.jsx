@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../Auth";
+import { AuthContext } from ".././Auth";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
@@ -16,8 +16,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   if (currentUser) {
-    navigate("/");
-    return null;
+    return <Navigate to={"/"} />;
   }
 
   const handleSubmit = (e) => {
@@ -50,6 +49,7 @@ const SignUpPage = () => {
         <input
           type="email"
           id="email"
+          required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -57,6 +57,7 @@ const SignUpPage = () => {
         <label htmlFor="password">password</label>
         <input
           type="password"
+          required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -65,6 +66,7 @@ const SignUpPage = () => {
         <input
           type="password"
           id="confirm-password"
+          required
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />

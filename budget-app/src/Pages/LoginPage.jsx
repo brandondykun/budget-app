@@ -1,14 +1,13 @@
 import {
-  getAuth,
   signInWithEmailAndPassword,
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
-import { AuthContext } from "../Auth";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from ".././Auth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -20,8 +19,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   if (currentUser) {
-    navigate("/");
-    return null;
+    return <Navigate to={"/"} />;
   }
 
   const handleSubmit = (e) => {
@@ -51,14 +49,18 @@ const LoginPage = () => {
         <input
           type="email"
           id="email"
+          autoComplete="email"
+          required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="password">password</label>
+        <label htmlFor="current-password">password</label>
         <input
           type="password"
-          id="password"
+          id="current-password"
+          autoComplete="current-password"
+          required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
