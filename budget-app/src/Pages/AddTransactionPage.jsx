@@ -97,7 +97,7 @@ const AddTransactionPage = () => {
           add
         </button>
       </form>
-      {errorMessage && <div className="success-message">{errorMessage}</div>}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
   );
 };
