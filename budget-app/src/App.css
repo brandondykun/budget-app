@@ -168,7 +168,7 @@ table {
   font-size: 1.2rem;
 }
 
-.form > input {
+.form > input, .form > select {
   margin: .3rem 0 1rem 0;
   padding: .5rem;
   background-color: var(--white);
