@@ -180,9 +180,9 @@ table {
   font-weight: bold;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 8px var(--black);
+  box-shadow: 0 0 15px var(--black);
 }
 
 input {
@@ -339,6 +339,68 @@ input[type="search"] {
   font-weight: bold;
 }
 
+.expense-list-container {
+  margin: 1rem 0 2rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  background-color: var(--white);
+  padding: 1rem;
+}
+
+.expense-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  max-width: 500px;
+  margin: .5rem auto;
+}
+
+.expense-text-container {
+  display: flex;
+  max-width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  flex: 1;
+}
+
+.expense-trash-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  padding: .5rem;
+  color: var(--dark)
+}
+
+.expense-trash-button:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.expense-list-title {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--light);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+}
+
+.title-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-expense-button {
+  margin: 0 0 1rem 1rem;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 @media only screen and (min-width: 500px) {
   .form {
     width: 500px;
@@ -372,6 +434,19 @@ input[type="search"] {
   
   .transactions-list {
     max-width: 700px;
+  }
+
+  .expense-lists-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .expense-list-container {
+    flex: .4;
+  }
+
+  .expense-text-container {
+    max-width: 30vw;
   }
 }
 
