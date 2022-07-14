@@ -6,13 +6,14 @@ import {
 import { useState } from "react";
 import { auth } from "../firebase-config";
 import { useNavigate, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from ".././Auth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const inputReference = useRef(null);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -21,6 +22,10 @@ const LoginPage = () => {
   if (currentUser) {
     return <Navigate to={"/"} />;
   }
+
+  useEffect(() => {
+    inputReference.current.focus();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,6 +56,7 @@ const LoginPage = () => {
           id="email"
           autoComplete="email"
           required
+          ref={inputReference}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
