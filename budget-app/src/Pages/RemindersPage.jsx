@@ -1,15 +1,21 @@
 import { useState } from "react";
 import Reminder from "../Components/Reminder";
-import { addDoc, Timestamp } from "firebase/firestore";
 import { AuthContext } from "../Auth";
-import { useContext } from "react";
-import { useEffect } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { useContext, useEffect, useRef } from "react";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  addDoc,
+  Timestamp,
+} from "firebase/firestore";
 import { db } from "../firebase-config";
 
 const RemindersPage = () => {
   const [text, setText] = useState("");
   const [reminders, setReminders] = useState([]);
+  const inputReference = useRef(null);
 
   const { currentUser } = useContext(AuthContext);
   const remindersRef = collection(db, "reminders");
@@ -18,6 +24,7 @@ const RemindersPage = () => {
     if (!currentUser) return;
 
     let mounted = true;
+    inputReference.current.focus();
 
     const getReminders = async () => {
       try {
@@ -70,6 +77,7 @@ const RemindersPage = () => {
         <input
           type="text"
           id="reminder-text-input"
+          ref={inputReference}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
