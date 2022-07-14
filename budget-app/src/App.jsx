@@ -15,6 +15,8 @@ import RemindersPage from "./Pages/RemindersPage";
 import Footer from "./Components/Footer";
 import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
 import EditTransactionPage from "./Pages/EditTransactionPage";
+import ScheduledExpensesPage from "./Pages/ScheduledExpensesPage";
+import AddScheduledExpensePage from "./Pages/AddScheduledExpensePage";
 
 function App() {
   return (
@@ -50,6 +52,28 @@ function App() {
                   exact
                   path="/details/:id"
                   element={<TransactionDetailsPage />}
+                />
+              </Route>
+              <Route
+                exact
+                path="/scheduled-expenses"
+                element={<PrivateRoute />}
+              >
+                <Route
+                  exact
+                  path="/scheduled-expenses"
+                  element={<ScheduledExpensesPage />}
+                />
+              </Route>
+              <Route
+                exact
+                path="/add-scheduled-expense"
+                element={<PrivateRoute />}
+              >
+                <Route
+                  exact
+                  path="/add-scheduled-expense"
+                  element={<AddScheduledExpensePage />}
                 />
               </Route>
               <Route path="*" element={<Navigate replace to="/" />} />
