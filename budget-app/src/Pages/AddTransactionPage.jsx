@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { addDoc, Timestamp } from "firebase/firestore";
 import { AuthContext } from "../Auth";
 import { useContext } from "react";
@@ -11,12 +11,17 @@ const AddTransactionPage = () => {
   const [paidAmount, setPaidAmount] = useState("");
   const [date, setDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const inputReference = useRef(null);
 
   const transactionsRef = collection(db, "transactions");
 
   const { currentUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    inputReference.current.focus();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +74,7 @@ const AddTransactionPage = () => {
           step="0.01"
           id="paid"
           placeholder="1000.00"
+          ref={inputReference}
           value={paidAmount}
           onChange={(e) => setPaidAmount(e.target.value)}
         />
