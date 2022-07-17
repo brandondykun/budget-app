@@ -209,6 +209,7 @@ input[type="search"] {
   margin-left: -30px;
   cursor: pointer;
   vertical-align: middle;
+  color: var(--dark);
 }
 
 .form-button {
