@@ -20,7 +20,8 @@ button:hover {
 .App {
   text-align: center;
   position: fixed;
-  min-height: 100%;
+  height: 100%;  
+  max-height: -webkit-fill-available;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@ button:hover {
 .primary-content {
   flex: 1;
   background-color: var(--light);
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 0 1rem;
 }
 
 .primary-nav {
@@ -48,6 +49,9 @@ button:hover {
   background-color: var(--white);
   padding: .7rem;
   border-top: 1px solid var(--medium);
+  width: 100%;
+  bottom: 0;
+  position: absolute;
 }
 
 .nav-link {
@@ -161,6 +165,7 @@ table {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .form {
@@ -402,6 +407,12 @@ input[type="search"] {
   align-items: center;
 }
 
+.page-contents-container {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 80px);
+}
+
 
 @media only screen and (min-width: 500px) {
   .form {
@@ -461,6 +472,7 @@ input[type="search"] {
   .primary-nav {
     border-top: none;
     border-bottom: 1px solid var(--medium);
+    position: relative;
   }
 
   .nav-link-text {
@@ -470,5 +482,10 @@ input[type="search"] {
   .primary-footer {
     display: block;
   }
+
+  .page-contents-container {
+    height: calc(100vh - 150px);
+  }
+
 }
 
