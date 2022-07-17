@@ -179,7 +179,7 @@ table {
   font-size: 1.2rem;
 }
 
-.form > input, .form > select {
+.form > input, .form > select, .password-input-container > input {
   margin: .3rem 0 1rem 0;
   padding: .5rem;
   background-color: var(--white);
@@ -189,6 +189,7 @@ table {
   box-shadow: 0 0 4px var(--dark);
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
+  width: 100%;
 }
 
 input:focus, select:focus {
@@ -202,6 +203,12 @@ input {
 
 input[type="search"] {
   -webkit-appearance: none;
+}
+
+.show-password-button {
+  margin-left: -30px;
+  cursor: pointer;
+  vertical-align: middle;
 }
 
 .form-button {
