@@ -4,12 +4,16 @@ import { auth } from "../firebase-config";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from ".././Auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const inputReference = useRef(null);
 
   const { currentUser } = useContext(AuthContext);
@@ -46,6 +50,15 @@ const SignUpPage = () => {
         setError(errorMessage);
       });
   };
+
+  const toggleShowPassword = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
+
   return (
     <div className="page-contents-container">
       <h1 className="page-title">sign up</h1>
@@ -61,21 +74,42 @@ const SignUpPage = () => {
         />
 
         <label htmlFor="password">password</label>
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="password-input-container">
+          <input
+            type={!passwordVisible ? "password" : "text"}
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span className="show-password-button" onClick={toggleShowPassword}>
+            {!passwordVisible ? (
+              <FontAwesomeIcon icon={faEye} size="sm" />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} size="sm" />
+            )}
+          </span>
+        </div>
 
         <label htmlFor="confirm-password">confirm password</label>
-        <input
-          type="password"
-          id="confirm-password"
-          required
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+        <div className="password-input-container">
+          <input
+            type={!confirmPasswordVisible ? "password" : "text"}
+            id="confirm-password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <span
+            className="show-password-button"
+            onClick={toggleShowConfirmPassword}
+          >
+            {!confirmPasswordVisible ? (
+              <FontAwesomeIcon icon={faEye} size="sm" />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} size="sm" />
+            )}
+          </span>
+        </div>
         <button className="form-button" type="submit">
           sign up
         </button>
