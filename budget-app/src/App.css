@@ -13,6 +13,10 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -280,6 +284,7 @@ input[type="search"] {
 
 .reminders-list-container {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .checkbox-text-container {
@@ -410,7 +415,7 @@ input[type="search"] {
 .page-contents-container {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 80px);
 }
 
 
