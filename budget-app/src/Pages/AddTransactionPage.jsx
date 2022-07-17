@@ -63,7 +63,7 @@ const AddTransactionPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">add savings</h1>
       <form id="add-transaction-form" className="form" onSubmit={handleSubmit}>
         <label htmlFor="paid">amount paid</label>

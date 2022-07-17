@@ -46,7 +46,7 @@ const ScheduledExpensesPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="page-contents-container">
       <div className="title-button-container">
         <h1 className="page-title">scheduled expenses</h1>
         <button

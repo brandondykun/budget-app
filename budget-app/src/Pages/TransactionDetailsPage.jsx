@@ -50,7 +50,7 @@ const TransactionDetailsPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">details</h1>
       <div>
         <div className="details-page-text-container">

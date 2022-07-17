@@ -71,7 +71,7 @@ const RemindersPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">reminders</h1>
       <form className="form single-row-form" onSubmit={handleSubmit}>
         <input

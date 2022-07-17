@@ -54,7 +54,7 @@ const AddScheduledExpensePage = () => {
   };
 
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">add scheduled expense</h1>
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="expense-text-input">description</label>

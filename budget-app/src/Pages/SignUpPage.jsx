@@ -47,7 +47,7 @@ const SignUpPage = () => {
       });
   };
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">sign up</h1>
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="email">email</label>

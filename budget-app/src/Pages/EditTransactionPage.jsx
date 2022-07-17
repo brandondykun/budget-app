@@ -72,7 +72,7 @@ const EditTransactionPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-contents-container">
       <h1 className="page-title">edit</h1>
       <form id="edit-transaction-form" className="form" onSubmit={handleSubmit}>
         <label htmlFor="paid">amount paid</label>
