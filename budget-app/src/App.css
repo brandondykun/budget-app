@@ -40,7 +40,6 @@ button:hover {
   flex-direction: column;
 }
 
-
 .primary-content {
   flex: 1;
   background-color: var(--light);
@@ -93,7 +92,6 @@ button:hover {
   width: 90vw;
   margin: auto;
 }
-
 
 .transactions-list-title {
   font-weight: bold;
@@ -201,7 +199,7 @@ input {
   border-radius: 0;
 }
 
-input[type="search"] {
+input[type="search"], input[type="select"] {
   -webkit-appearance: none;
 }
 
@@ -236,7 +234,6 @@ input[type="search"] {
 .cancel-button {
   width: 100%;
   margin: 1rem auto;
-
 }
 
 .single-row-form {
@@ -426,6 +423,50 @@ input[type="search"] {
   height: calc(100vh - 170px);
 }
 
+.date-filter-container {
+  background-color: var(--white);
+  padding: .4rem;
+  margin: .5rem auto;
+  color: var(--dark);
+  font-family: 'Lobster Two', cursive;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.filter-select {
+  width: 105px;
+  margin-left: .3rem;
+  background-color: var(--white);
+  border: 1px solid var(--light);
+  font-size: .9rem;
+  color: var(--dark);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  padding-left: .2rem;
+}
+
+.filter-select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.filter-inputs-container {
+  display: flex;
+  justify-content: space-around;
+  margin: .3rem 0;
+}
+
+.filter-input-container {
+  margin: 0 .5rem;
+}
+
+.empty-list-text {
+  margin: auto;
+  align-self: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
 
 @media only screen and (min-width: 500px) {
   .form {
@@ -449,6 +490,14 @@ input[type="search"] {
 
   .small-button {
     max-width: 500px;
+  }
+
+  .filter-inputs-container {
+    justify-content: center;
+  }
+
+  .filter-input-container {
+    margin: 0 2rem;
   }
 }
 
@@ -499,6 +548,4 @@ input[type="search"] {
   .page-contents-container {
     height: calc(100vh - 150px);
   }
-
 }
-
