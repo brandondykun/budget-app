@@ -18,12 +18,14 @@ It was created on personal request from a friend who needed a centralized locati
 
 # Technologies
 
-Frontend built with React, and the backend uses Firebase. The included .env.template file includes the necessary Firebase environment variables that are required to connect to a Firebase backend.
+The frontend was built with React, and the backend uses Firebase. The included .env.template file includes the necessary Firebase environment variables that are required to connect to a Firebase backend.
 
-The Footer Component displays a random inspirational quote that is fetched using https://api.goprogram.ai/inspiration/docs/. The api updates the quote every hour, but the quote is only update if the page is refreshed or a new login occurs.
+The frontend is currently being hosted on Vercel https://vercel.com/.
+
+The Footer Component displays a random inspirational quote that is fetched using https://api.goprogram.ai/inspiration/docs/. The api updates the quote every hour, but the quote will only update if the page is refreshed or a new login occurs.
 &nbsp;  
 &nbsp;
 
 # Future Goals
 
-Budget App is actively being built, and new features are being added almost daily! The next major feature will be a calendar page where income, savings, and scheduled expanses can be shown on a calendar.
+Budget App is currently functional, but actively being built, and new features are being added almost daily! The next major feature will be a calendar page where income, savings, and scheduled expenses can be shown on a calendar.
