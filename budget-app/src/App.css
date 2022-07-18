@@ -199,8 +199,10 @@ input {
   border-radius: 0;
 }
 
-input[type="search"], input[type="select"] {
+input[type="select"] {
   -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
 }
 
 .show-password-button {
