@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { AuthContext } from ".././Auth";
+import TransactionsDateFilter from "../Components/TransactionsDateFilter";
 
 const HomePage = () => {
   const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
@@ -25,21 +28,23 @@ const HomePage = () => {
           ...doc.data(),
           id: doc.id,
         }));
-        setTransactions(transactionsList);
+        setTransactions(
+          transactionsList.sort((a, b) => {
+            return b.date - a.date;
+          })
+        );
+        setLoading(false);
       };
       getTransactions();
     }
   }, [currentUser]);
 
-  const paidTotal = transactions?.reduce((acc, curr) => {
+  const paidTotal = filteredTransactions?.reduce((acc, curr) => {
     return (acc += curr.paid);
   }, 0);
-  const savedTotal = transactions?.reduce((acc, curr) => {
+  const savedTotal = filteredTransactions?.reduce((acc, curr) => {
     return (acc += curr.saved);
   }, 0);
-  const sortedTransactions = transactions.sort(function (a, b) {
-    return b.date - a.date;
-  });
 
   return (
     <div className="page-contents-container">
@@ -72,6 +77,10 @@ const HomePage = () => {
           {savedTotal && paidTotal && parseInt((savedTotal / paidTotal) * 100)}%
           of your earnings!
         </div>
+        <TransactionsDateFilter
+          transactions={transactions}
+          setFilteredTransactions={setFilteredTransactions}
+        />
         <div className="table-container">
           <table id="transactions-table" className="transactions-list">
             <tbody>
@@ -80,7 +89,7 @@ const HomePage = () => {
                 <th>paid</th>
                 <th>saved</th>
               </tr>
-              {sortedTransactions?.map((transaction) => {
+              {filteredTransactions?.map((transaction) => {
                 const date = new Date(transaction.date.seconds * 1000);
                 return (
                   <tr
@@ -99,6 +108,16 @@ const HomePage = () => {
             </tbody>
           </table>
         </div>
+        {!loading && !transactions[0] && (
+          <div className="empty-list-text">
+            Add savings to see them listed here!
+          </div>
+        )}
+        {!loading && transactions[0] && !filteredTransactions[0] && (
+          <div className="empty-list-text">
+            There are no savings that match those date filters.
+          </div>
+        )}
       </div>
     </div>
   );
