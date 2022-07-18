@@ -437,7 +437,7 @@ select {
   overflow-y: auto;
   flex: 1 1 auto;
   height: 0px;
-  margin-bottom: 50px;
+  margin-bottom: 47px;
 }
 
 .date-filter-container {
@@ -563,6 +563,6 @@ select {
   }
 
   .page-contents-container {
-    height: calc(100vh - 150px);
+    margin-bottom: 0;
   }
 }
