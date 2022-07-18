@@ -40,16 +40,10 @@ button:hover {
   flex-direction: column;
 }
 
-/* .primary-content {
-  flex: 1;
-  background-color: var(--light);
-  padding: 2rem 1rem 0 1rem;
-} */
-
 .primary-content {
   flex: 1;
   background-color: var(--light);
-  padding: 2rem 1rem 0 1rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -426,18 +420,13 @@ select {
   align-items: center;
 }
 
-/* .page-contents-container {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: calc(100vh - 170px);
-} */
-
 .page-contents-container {
   overflow-x: hidden;
   overflow-y: auto;
   flex: 1 1 auto;
   height: 0px;
   margin-bottom: 47px;
+  padding-top: 1rem;
 }
 
 .date-filter-container {
