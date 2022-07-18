@@ -537,6 +537,11 @@ select {
     flex-direction: column-reverse;
   }
 
+  .App {
+    position: relative;
+    min-height: 100vh;
+  }
+
   .primary-nav {
     border-top: none;
     border-bottom: 1px solid var(--medium);
@@ -553,5 +558,6 @@ select {
 
   .page-contents-container {
     margin-bottom: 0;
+    height: auto;
   }
 }
