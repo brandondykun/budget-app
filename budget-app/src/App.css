@@ -13,7 +13,7 @@
   padding: 0;
 }
 
-html, body {
+html, body, #root {
   height: 100%;
 }
 
@@ -23,7 +23,6 @@ button:hover {
 
 .App {
   text-align: center;
-  position: fixed;
   height: 100%;  
   max-height: -webkit-fill-available;
   width: 100%;
@@ -538,7 +537,6 @@ select {
   }
 
   .App {
-    position: relative;
     min-height: 100vh;
   }
 
