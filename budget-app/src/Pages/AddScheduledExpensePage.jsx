@@ -79,15 +79,18 @@ const AddScheduledExpensePage = () => {
           onChange={(e) => setPrice(e.target.value)}
         />
         <label htmlFor="type">want or need?</label>
-        <select
-          name="type"
-          id="type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        >
-          <option value="want">i want this</option>
-          <option value="need">i need this</option>
-        </select>
+        <div className="select-container want-need-select-container">
+          <select
+            name="type"
+            id="type"
+            className="want-need-select"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="want">i want this</option>
+            <option value="need">i need this</option>
+          </select>
+        </div>
         <button className="form-button add-button" type="submit">
           add
         </button>
