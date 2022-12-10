@@ -33,20 +33,20 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setPersistence(auth, browserLocalPersistence).then(() => {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          if (user) {
-            navigate("/");
-          }
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setError(errorMessage);
-        });
-    });
+    // setPersistence(auth, browserLocalPersistence).then(() => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+    // });
   };
 
   const toggleShowPassword = () => {
